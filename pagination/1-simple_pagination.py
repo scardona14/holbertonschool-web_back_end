@@ -7,7 +7,7 @@ import math
 
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """ Helper function to return a tuple of size two containing a start
-        index and an end index 
+    index and an end index
     """
     start = (page - 1) * page_size
     end = page * page_size
@@ -37,11 +37,10 @@ class Server:
         assert isinstance(page, int) and page > 0
         assert isinstance(page_size, int) and page_size > 0
         self.dataset()
-        
+
         if self.__dataset is None:
             return []
-        
+
         idx_range = index_range(page, page_size)
         data = self.__dataset[idx_range[0]:idx_range[1]]
         return data
-    
