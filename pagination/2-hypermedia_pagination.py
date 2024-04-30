@@ -6,6 +6,7 @@ from typing import List, Tuple
 import csv
 from math import ceil
 
+
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """Helper function to return a tuple of size two containing a start
     index and an end index
@@ -13,6 +14,7 @@ def index_range(page: int, page_size: int) -> Tuple[int, int]:
     start = (page - 1) * page_size
     end = page * page_size
     return (start, end)
+
 
 class Server:
     """Server class to paginate a database of popular baby names"""
