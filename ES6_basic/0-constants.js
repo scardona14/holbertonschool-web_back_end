@@ -1,9 +1,15 @@
 export function taskFirst() {
-  return 'First task';
+  const task = 'I prefer const when I can.';
+    return task;
+}
+
+export function getTask() {
+    return ' is okay';
 }
 
 export function taskNext() {
-  return 'Next task';
+    let combination = 'But sometimes let';
+    combination += getTask();
+
+    return combination;
 }
-
-
