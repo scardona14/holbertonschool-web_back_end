@@ -1,7 +1,7 @@
-export default function iterateThroughObject(reportWithIterator) {
-  const employees = [];
-  for (const r of reportWithIterator) {
-    employees.push(r);
+export default function appendToEAchArrayValue(array, appendString) {
+  const arr = [];
+  for (const value of array) {
+    arr.push(value + appendString);
   }
-  return employees.join(' |');
+  return arr;
 }
