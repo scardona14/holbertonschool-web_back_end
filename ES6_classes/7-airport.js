@@ -5,7 +5,7 @@ class Airport {
   }
 
   get [Symbol.toStringTag]() {
-    return this.code;
+    return this._code;
   }
 }
 
