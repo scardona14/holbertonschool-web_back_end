@@ -38,4 +38,3 @@ class MRUCache(BaseCaching):
             self.keys.append(key)
             return self.cache_data.get(key, None)
         return None
-    
