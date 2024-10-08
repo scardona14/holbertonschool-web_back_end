@@ -10,7 +10,9 @@ from typing import List
 
 PII_FIELDS = ('name', 'email', 'phone', 'ssn', 'password')
 
-def filter_datum(fields: List[str], redaction: str, message: str, separator: str) -> str:
+
+def filter_datum(fields: List[str],
+                 redaction: str, message: str, separator: str) -> str:
     """
     Returns the log message obfuscated
     """
@@ -18,6 +20,7 @@ def filter_datum(fields: List[str], redaction: str, message: str, separator: str
         message = re.sub(rf"{field}=.*?{separator}",
                          f"{field}={redaction}{separator}", message)
     return message
+
 
 def get_logger() -> logging.Logger:
     """
@@ -32,6 +35,7 @@ def get_logger() -> logging.Logger:
     logger.addHandler(stream_handler)
     return logger
 
+
 def get_db() -> mysql.connector.connection.MySQLConnection:
     """
     Returns a connector to the database
@@ -44,6 +48,7 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
     )
     return connector
 
+
 class RedactingFormatter(logging.Formatter):
     """
     Redacting formatter class
@@ -52,6 +57,7 @@ class RedactingFormatter(logging.Formatter):
     FORMAT = "[HOLBERTON] %(name)s %(levelname)s %(asctime)-15s: %(message)s"
     SEPARATOR = ';'
 
+
 def __init__(self, fields: List[str]):
     """
     Constructor
@@ -59,12 +65,15 @@ def __init__(self, fields: List[str]):
     super(RedactingFormatter, self).__init__(self.FORMAT)
     self.fields = fields
 
+
 def format(self, record: logging.LogRecord) -> str:
     """
     Filters values in incoming log records using filter_datum
     """
-    record.msg = filter_datum(self.fields, self.REDACTION, record.getMessage(), self.SEPARATOR)
+    record.msg = filter_datum(self.fields, self.REDACTION,
+                record.getMessage(), self.SEPARATOR)
     return super(RedactingFormatter, self).format(record)
+
 
 def main():
     """
@@ -78,10 +87,12 @@ def main():
     logger = get_logger()
 
     for row in cursor:
-        message = '; '.join(f'{field_names[i]}={str(row[i])}' for i in range(len(row)))
+        message = '; '.join(f'{field_names[i]}={str(row[i])}'
+                            for i in range(len(row)))
         logger.info(message)
     cursor.close()
     db.close()
+
 
 if __name__ == '__main__':
     main()
