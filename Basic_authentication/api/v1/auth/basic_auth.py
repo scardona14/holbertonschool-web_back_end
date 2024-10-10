@@ -5,6 +5,8 @@ from api.v1.auth.auth import Auth
 from base64 import b64decode
 from models.user import User
 from typing import TypeVar
+from typing import Type
+from typing import Tuple
 
 
 class BasicAuth(Auth):
@@ -47,7 +49,7 @@ class BasicAuth(Auth):
 
     def extract_user_credentials(self,
                                  decoded_base64_authorization_header: str
-                                 ) -> (str, str):
+                                ) -> Tuple[str, str]:
         """
         Returns the user email and password from the
         Base64 decoded value
@@ -67,7 +69,7 @@ class BasicAuth(Auth):
         return credentials[0], credentials[1]
 
     def user_object_from_credentials(self, user_email: str,
-                                     user_pwd: str) -> TypeVar('User'):
+                                     user_pwd: str) -> Type['User']:
         """
         Returns the User instance based on his
         email and password
@@ -89,7 +91,7 @@ class BasicAuth(Auth):
 
         return None
 
-    def current_user(self, request=None) -> TypeVar('User'):
+    def current_user(self, request=None) -> Type['User']:
         """ overloads Auth and retrieves the User instance for a request """
         auth_header = self.authorization_header(request)
 

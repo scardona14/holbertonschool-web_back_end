@@ -3,6 +3,7 @@
 """
 from flask import request
 from typing import List, TypeVar
+from typing import Type
 
 
 class Auth:
@@ -44,6 +45,6 @@ class Auth:
 
         return request.headers.get("Authorization", None)
 
-    def current_user(self, request=None) -> TypeVar('User'):
+    def current_user(self, request=None) -> Type['User']:
         """ Validates current user """
         return None
