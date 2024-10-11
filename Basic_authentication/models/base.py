@@ -6,6 +6,8 @@ from typing import TypeVar, List, Iterable
 from os import path
 import json
 import uuid
+from typing import TypeVar
+from typing import Type
 
 
 TIMESTAMP_FORMAT = "%Y-%m-%dT%H:%M:%S"
@@ -35,7 +37,7 @@ class Base():
         else:
             self.updated_at = datetime.utcnow()
 
-    def __eq__(self, other: TypeVar('Base')) -> bool:
+    def __eq__(self, other: Type['Base']) -> bool:
         """ Equality
         """
         if type(self) != type(other):
@@ -109,17 +111,20 @@ class Base():
         return len(DATA[s_class].keys())
 
     @classmethod
-    def all(cls) -> Iterable[TypeVar('Base')]:
+    def all(cls) -> Iterable['Base']:
         """ Return all objects
         """
         return cls.search()
 
-    @classmethod
-    def get(cls, id: str) -> TypeVar('Base'):
-        """ Return one object by ID
-        """
-        s_class = cls.__name__
-        return DATA[s_class].get(id)
+    class Base:
+        # Existing code...
+
+        @classmethod
+        def get(cls, id: str) -> 'Base':
+            """ Return one object by ID
+            """
+            s_class = cls.__name__
+            return DATA[s_class].get(id)
 
     @classmethod
     def search(cls, attributes: dict = {}) -> List[TypeVar('Base')]:
@@ -136,3 +141,4 @@ class Base():
             return True
 
         return list(filter(_search, DATA[s_class].values()))
+    
