@@ -1,5 +1,6 @@
--- Script that lists all bands from the 'Glam Rock' genre
-SELECT bans_name AS band_name, IFNULL(split, 2020) - IFNULL(formed, 0) AS lifespan
+-- 3. Old school band
+--  lists all bands with Glam rock as their main style, ranked by their longevity
+SELECT band_name AS band_name, IFNULL(split, 2020) - IFNULL(formed, 0) AS lifespan
 FROM metal_bands
-WHERE style LIKE '%Glam Rock%'
+WHERE style LIKE '%Glam rock%'
 ORDER BY lifespan DESC;
