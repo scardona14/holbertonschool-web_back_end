@@ -1,0 +1,56 @@
+# Compiled object files
+*.o
+
+# Redis server binaries
+redis-server
+redis-cli
+redis-benchmark
+redis-check-aof
+redis-check-rdb
+
+# Logs
+*.log
+
+# Dump files (persistent data files)
+dump.rdb
+appendonly.aof
+
+# Generated configuration files
+*.conf
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*.bak
+
+# Dependency and build files
+deps/
+Makefile
+*.mk
+
+# Test files and outputs
+tests/
+*.gcda
+*.gcno
+*.gcov
+*.profraw
+*.profdata
+
+# Debugging symbols and core dumps
+*.dSYM/
+*.core
+
+# IDE specific files (optional)
+.vscode/
+.idea/
+*.iml
+
+# Node.js related files (if present in your project)
+node_modules/
+
+# Miscellaneous
+*.tar.gz
+*.zip
+*.7z
+*.bak
